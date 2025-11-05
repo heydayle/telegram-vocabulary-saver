@@ -59,9 +59,16 @@ function createPopup(x, y) {
   popupElement = document.createElement('div');
   popupElement.className = POPUP_CLASS;
 
-  const wordLabel = document.createElement('span');
-  wordLabel.className = `${POPUP_CLASS}__word`;
-  wordLabel.textContent = `"${selectedWord}"`;
+  const wordInput = document.createElement('textarea');
+  wordInput.className = `${POPUP_CLASS}__word ${POPUP_CLASS}__input`;
+  wordInput.value = selectedWord;
+  wordInput.setAttribute('aria-label', 'Selected word');
+  wordInput.setAttribute('rows', '1');
+  wordInput.addEventListener('input', () => {
+    wordInput.style.height = 'auto';
+    wordInput.style.height = `${wordInput.scrollHeight}px`;
+  });
+  wordInput.dispatchEvent(new Event('input'));
 
   const input = document.createElement('textarea');
   input.placeholder = 'Enter meaning...';
@@ -79,18 +86,25 @@ function createPopup(x, y) {
   button.className = `${POPUP_CLASS}__button`;
 
   button.addEventListener('click', () => {
+    const word = wordInput.value.trim();
+    if (!word) {
+      wordInput.focus();
+      return;
+    }
+
     const meaning = input.value.trim();
     if (!meaning) {
       input.focus();
       return;
     }
     try {
-      savedSelectedWord = selectedWord;
+      savedSelectedWord = word;
+      selectedWord = word;
       chrome.runtime.sendMessage(
         {
           type: 'SAVE_VOCAB',
           payload: {
-            word: selectedWord,
+            word,
             meaning,
             pageUrl: window.location.href
           }
@@ -114,7 +128,7 @@ function createPopup(x, y) {
     }
   });
 
-  popupElement.appendChild(wordLabel);
+  popupElement.appendChild(wordInput);
   popupElement.appendChild(input);
   popupElement.appendChild(button);
 
