@@ -43,13 +43,6 @@ To adjust your credentials later, open the extension's details card on `chrome:/
 - **Credentials missing** &mdash; Visit the options page and re-enter your bot token and chat ID. The background worker will reopen setup when values are missing.
 - **Telegram rejects the message** &mdash; Check the spoiler formatting and ensure your bot is added to the target chat. Errors are logged in the service worker console.
 
-### Privacy & Data Practices
-
-- **Data collection** &mdash; The extension does not collect, transmit, or sell any personal data. All words and definitions stay within the active tab until you confirm sending them to Telegram yourself.
-- **Stored information** &mdash; The Telegram bot token and chat ID you enter are saved with `chrome.storage.sync` so Chrome can sync them securely across your devices. No other data is persisted.
-- **Network requests** &mdash; The only outbound request made by the extension is to `https://api.telegram.org/bot<token>/sendMessage` so your approved bot can deliver the vocabulary entry to the configured chat.
-- **Third-party sharing** &mdash; No information is shared with parties other than Telegram, and the extension never accesses browsing history or content beyond the text you highlight.
-
 ## For Developers
 
 ### Project structure
@@ -87,6 +80,13 @@ To adjust your credentials later, open the extension's details card on `chrome:/
    - If you are unsure whether the stored chat ID is correct, temporarily add [@GetIDsBot](https://t.me/getidsbot) to the destination chat and issue `/start`. The bot replies with the numeric chat identifier you should paste into the setup or options page.
 
 After adjusting settings, reload the extension from `chrome://extensions` (click **Reload**) to restart the service worker.
+
+## Chính sách quyền riêng tư
+
+- **Thu thập dữ liệu** &mdash; Tiện ích không thu thập, truyền hoặc bán bất kỳ dữ liệu cá nhân nào. Mọi từ vựng và định nghĩa chỉ được giữ lại trên trang đang mở cho đến khi bạn chủ động gửi chúng đến Telegram.
+- **Thông tin được lưu trữ** &mdash; Mã bot và chat ID bạn nhập được lưu bằng `chrome.storage.sync`, cho phép Chrome đồng bộ hóa an toàn giữa các thiết bị. Không có dữ liệu nào khác được lưu.
+- **Yêu cầu mạng** &mdash; Yêu cầu duy nhất được gửi ra bên ngoài là đến `https://api.telegram.org/bot<token>/sendMessage` để bot Telegram đã được bạn phê duyệt chuyển tiếp từ vựng tới cuộc trò chuyện đã cấu hình.
+- **Chia sẻ với bên thứ ba** &mdash; Không có thông tin nào được chia sẻ với các bên khác ngoài Telegram và tiện ích không truy cập lịch sử duyệt web hoặc nội dung nào khác ngoài phần văn bản bạn đã bôi đen.
 
 ### Contributing
 
