@@ -43,6 +43,13 @@ To adjust your credentials later, open the extension's details card on `chrome:/
 - **Credentials missing** &mdash; Visit the options page and re-enter your bot token and chat ID. The background worker will reopen setup when values are missing.
 - **Telegram rejects the message** &mdash; Check the spoiler formatting and ensure your bot is added to the target chat. Errors are logged in the service worker console.
 
+### Privacy & Data Practices
+
+- **Data collection** &mdash; The extension does not collect, transmit, or sell any personal data. All words and definitions stay within the active tab until you confirm sending them to Telegram yourself.
+- **Stored information** &mdash; The Telegram bot token and chat ID you enter are saved with `chrome.storage.sync` so Chrome can sync them securely across your devices. No other data is persisted.
+- **Network requests** &mdash; The only outbound request made by the extension is to `https://api.telegram.org/bot<token>/sendMessage` so your approved bot can deliver the vocabulary entry to the configured chat.
+- **Third-party sharing** &mdash; No information is shared with parties other than Telegram, and the extension never accesses browsing history or content beyond the text you highlight.
+
 ## For Developers
 
 ### Project structure
