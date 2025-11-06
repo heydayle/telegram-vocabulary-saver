@@ -81,12 +81,12 @@ To adjust your credentials later, open the extension's details card on `chrome:/
 
 After adjusting settings, reload the extension from `chrome://extensions` (click **Reload**) to restart the service worker.
 
-## Chính sách quyền riêng tư
+## Privacy Policy
 
-- **Thu thập dữ liệu** &mdash; Tiện ích không thu thập, truyền hoặc bán bất kỳ dữ liệu cá nhân nào. Mọi từ vựng và định nghĩa chỉ được giữ lại trên trang đang mở cho đến khi bạn chủ động gửi chúng đến Telegram.
-- **Thông tin được lưu trữ** &mdash; Mã bot và chat ID bạn nhập được lưu bằng `chrome.storage.sync`, cho phép Chrome đồng bộ hóa an toàn giữa các thiết bị. Không có dữ liệu nào khác được lưu.
-- **Yêu cầu mạng** &mdash; Yêu cầu duy nhất được gửi ra bên ngoài là đến `https://api.telegram.org/bot<token>/sendMessage` để bot Telegram đã được bạn phê duyệt chuyển tiếp từ vựng tới cuộc trò chuyện đã cấu hình.
-- **Chia sẻ với bên thứ ba** &mdash; Không có thông tin nào được chia sẻ với các bên khác ngoài Telegram và tiện ích không truy cập lịch sử duyệt web hoặc nội dung nào khác ngoài phần văn bản bạn đã bôi đen.
+- **Data collection** &mdash; The extension does not collect, transmit, or sell any personal information. Vocabulary entries and definitions stay on the active page until you deliberately submit them to Telegram.
+- **Stored information** &mdash; The bot token and chat ID you provide are saved via `chrome.storage.sync`, allowing Chrome to sync them securely across your devices. No other data is persisted.
+- **Network requests** &mdash; The only outbound request is to `https://api.telegram.org/bot<token>/sendMessage`, enabling your authorized Telegram bot to forward vocabulary to the configured conversation.
+- **Third-party sharing** &mdash; No information is shared with parties other than Telegram, and the extension does not access your browsing history or any content beyond the text you highlight.
 
 ### Contributing
 
