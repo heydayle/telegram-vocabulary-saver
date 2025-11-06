@@ -81,6 +81,13 @@ To adjust your credentials later, open the extension's details card on `chrome:/
 
 After adjusting settings, reload the extension from `chrome://extensions` (click **Reload**) to restart the service worker.
 
+## Privacy Policy
+
+- **Data collection** &mdash; The extension does not collect, transmit, or sell any personal information. Vocabulary entries and definitions stay on the active page until you deliberately submit them to Telegram.
+- **Stored information** &mdash; The bot token and chat ID you provide are saved via `chrome.storage.sync`, allowing Chrome to sync them securely across your devices. No other data is persisted.
+- **Network requests** &mdash; The only outbound request is to `https://api.telegram.org/bot<token>/sendMessage`, enabling your authorized Telegram bot to forward vocabulary to the configured conversation.
+- **Third-party sharing** &mdash; No information is shared with parties other than Telegram, and the extension does not access your browsing history or any content beyond the text you highlight.
+
 ### Contributing
 
 1. Fork the repository and create a new branch.

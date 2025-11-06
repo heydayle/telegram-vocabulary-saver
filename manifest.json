@@ -8,9 +8,17 @@
     "scripting",
     "activeTab"
   ],
+  "permission_descriptions": {
+    "storage": "Stores the Telegram bot token and chat ID locally via chrome.storage.sync so the extension can send messages without prompting every time.",
+    "scripting": "Injects the inline popup scripts and styles into the active tab when you select text, enabling the save workflow.",
+    "activeTab": "Accesses the currently active tab only after the user interacts with the extension, allowing it to read the selected word and show the popup."
+  },
   "host_permissions": [
     "https://api.telegram.org/*"
   ],
+  "host_permissions_descriptions": {
+    "https://api.telegram.org/*": "Sends the formatted vocabulary entry to Telegram's Bot API using the credentials you provide."
+  },
   "background": {
     "service_worker": "background.js"
   },
