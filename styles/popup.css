@@ -19,12 +19,19 @@
   padding: 6px 8px;
   border: 1px solid #cccccc;
   border-radius: 6px;
-  font-size: 14px;
   color: #333333;
   background: #ffffff;
   max-width: 300px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.telegram-vocab-popup__input {
+  font-size: 14px !important;
+}
+
+.telegram-vocab-popup__word {
+  font-size: 14px;
 }
 
 .telegram-vocab-popup__word {
