@@ -40,13 +40,37 @@ async function handleSaveVocab(message) {
     throw new Error('Telegram credentials are not set. Redirecting to setup.');
   }
 
-  const { word, meaning, pageUrl } = message.payload || {};
+  const { word, meaning, format, pageUrl } = message.payload || {};
 
   if (!word || !meaning) {
     throw new Error('Word and meaning are required.');
   }
+
+  const formatMessage = (escapeMarkdownMeaning) => {
+    let meaningFormatted = escapeMarkdownMeaning;
+    
+    if (!format) return escapeMarkdownMeaning;
+    switch (format) {
+        case 'italic':
+          meaningFormatted = `\"\_${escapeMarkdownMeaning}\_\"`;
+          break;
+        case 'bold':
+          meaningFormatted = `\*${escapeMarkdownMeaning}\*`;
+          break;
+        case 'code':
+          meaningFormatted = `\`\`\`${escapeMarkdownMeaning}\`\`\``;
+          break;
+        case 'hidden':
+          meaningFormatted = `\|\|${escapeMarkdownMeaning}\|\|`;
+          break;
+        default:
+          break;
+      }
+    return meaningFormatted;
+  }
   
-  const messageFormatted = `*${escapeMarkdown(word)}* ${escapeMarkdown('=')} ||${escapeMarkdown(meaning)}||`
+  
+  const messageFormatted = `*${escapeMarkdown(word)}* ${escapeMarkdown('=')} ${formatMessage(escapeMarkdown(meaning))}`
   const text = `${messageFormatted}`;
 
   const endpoint = `${TELEGRAM_API_BASE}/bot${botToken}/sendMessage`;
