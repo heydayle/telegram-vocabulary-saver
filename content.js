@@ -60,14 +60,8 @@ function createPopup(x, y) {
   popupElement.className = POPUP_CLASS;
 
   const wordInput = document.createElement('textarea');
-  wordInput.className = `${POPUP_CLASS}__word ${POPUP_CLASS}__input`;
+  wordInput.className = `${POPUP_CLASS}__word`;
   wordInput.value = selectedWord;
-  wordInput.setAttribute('aria-label', 'Selected word');
-  wordInput.setAttribute('rows', '1');
-  wordInput.addEventListener('input', () => {
-    wordInput.style.height = 'auto';
-    wordInput.style.height = `${wordInput.scrollHeight}px`;
-  });
   wordInput.dispatchEvent(new Event('input'));
 
   const input = document.createElement('textarea');
@@ -80,19 +74,47 @@ function createPopup(x, y) {
     }
   });
 
+  const createCheckboxElement = (id) => {
+    const spanElement = document.createElement('span');
+    spanElement.innerHTML = `
+      <span class="${POPUP_CLASS}__radio-item">
+        <input type="radio" class="${POPUP_CLASS}__radio" id="${id}" name="format" value="${id}" />
+        <label>${id}</label>
+      </span>
+    `;
+    return spanElement;
+  }
+
+  const checkboxes = document.createElement('div');
+  checkboxes.className = `${POPUP_CLASS}__radio-group`;
+  checkboxes.innerHTML = `
+    ${createCheckboxElement('hidden').innerHTML}
+    ${createCheckboxElement('italic').innerHTML}
+    ${createCheckboxElement('bold').innerHTML}
+    ${createCheckboxElement('code').innerHTML}
+  `;
+  
   const button = document.createElement('button');
   button.type = 'button';
   button.textContent = 'Save';
   button.className = `${POPUP_CLASS}__button`;
 
   button.addEventListener('click', () => {
+    let meaning = input.value.trim();
+    const radios = popupElement.querySelectorAll(`.${POPUP_CLASS}__radio`);
+    radios.forEach((radio) => {
+      if (radio.checked) {
+        format = radio.value;
+      }
+    });
+    console.log(meaning);
+  
     const word = wordInput.value.trim();
     if (!word) {
       wordInput.focus();
       return;
     }
 
-    const meaning = input.value.trim();
     if (!meaning) {
       input.focus();
       return;
@@ -106,6 +128,7 @@ function createPopup(x, y) {
           payload: {
             word,
             meaning,
+            format,
             pageUrl: window.location.href
           }
         },
@@ -130,6 +153,7 @@ function createPopup(x, y) {
 
   popupElement.appendChild(wordInput);
   popupElement.appendChild(input);
+  popupElement.appendChild(checkboxes);
   popupElement.appendChild(button);
 
   document.body.appendChild(popupElement);

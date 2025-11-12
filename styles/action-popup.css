@@ -95,7 +95,7 @@ body {
   padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid rgba(15, 23, 42, 0.18);
-  font-size: 15px;
+  font-size: 14px !important;
 }
 
 .popup__input:focus {
